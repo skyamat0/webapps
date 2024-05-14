@@ -1,11 +1,31 @@
 name: aichatbot
 services: 
-  web:
+  webapp-dev:
     build:
       context: ./
       dockerfile: ./Dockerfile
+      target: dev
     ports:
       - 3000:3000
-    volumes: 
-      - ./src:/src
-    command: sh -c "npm run dev"
+
+    # volumes: RUN -> mount -> CMDで走るので，mountのタイミングが悪くてホスト側をマウントするから折角RUNでインストールしたモジュールが消える
+
+  webapp-build:
+    build:
+      context: .
+      target: build
+    volumes:
+      - .:/webapp
+    command: ["npm", "run", "build"]
+  
+  webapp-prod:
+    build:
+      context: .
+      target: production
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+
+volumes:
+  node_modules:
