@@ -1,15 +1,11 @@
-name: AI_chatbot
+name: aichatbot
 services: 
   web:
     build:
-      context: .
+      context: ./
       dockerfile: ./Dockerfile
-      target: dev
-  db:
-    image: postgres:12-alpine
-    env_file:
-      - database.env
-    volumes: postgres:/var/lib/postgresql/data
     ports:
-      - 8000:8000
-
+      - 3000:3000
+    volumes: 
+      - ./src:/src
+    command: sh -c "npm run dev"
