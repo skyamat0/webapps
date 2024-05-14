@@ -1,0 +1,15 @@
+name: AI_chatbot
+services: 
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: dev
+  db:
+    image: postgres:12-alpine
+    env_file:
+      - database.env
+    volumes: postgres:/var/lib/postgresql/data
+    ports:
+      - 8000:8000
+

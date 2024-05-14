@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18-alpine AS dev
 WORKDIR /app
 
 # TypeScriptとcreate-next-appをインストール
