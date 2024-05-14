@@ -1,7 +1,6 @@
 # dev stage
 FROM node:18-alpine AS dev
-RUN npx create-next-app webapp --ts --eslint --no-tailwind --no-src-dir \
---no-app --import-alias '@/*'
+RUN npx create-next-app webapp --ts 
 WORKDIR /webapp
 CMD ["npm", "run", "dev"]
 

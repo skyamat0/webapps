@@ -7,8 +7,8 @@ services:
       target: dev
     ports:
       - 3000:3000
-
-    # volumes: RUN -> mount -> CMDで走るので，mountのタイミングが悪くてホスト側をマウントするから折角RUNでインストールしたモジュールが消える
+    volumes: 
+      - ./src:/webapp
 
   webapp-build:
     build:
@@ -18,14 +18,11 @@ services:
       - .:/webapp
     command: ["npm", "run", "build"]
   
-  webapp-prod:
+  webapp-run:
     build:
       context: .
-      target: production
+      target: runner
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=production
-
-volumes:
-  node_modules:
+      - NODE_ENV=runner
