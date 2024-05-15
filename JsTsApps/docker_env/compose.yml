@@ -1,4 +1,5 @@
 name: aichatbot
+
 services: 
   webapp-dev:
     build:
@@ -8,7 +9,7 @@ services:
     ports:
       - 3000:3000
     volumes: 
-      - ./src:/webapp
+      - ./src:/app
 
   webapp-build:
     build:

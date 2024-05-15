@@ -1,8 +1,6 @@
 # dev stage
 FROM node:18-alpine AS dev
-RUN npx create-next-app webapp --ts 
-WORKDIR /webapp
-CMD ["npm", "run", "dev"]
+WORKDIR /app
 
 # build stage
 FROM node:18-alpine AS build
@@ -28,4 +26,3 @@ EXPOSE 3000
 
 # Next.js アプリの起動
 CMD ["npm", "start"]
-
