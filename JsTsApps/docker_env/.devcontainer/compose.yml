@@ -9,21 +9,21 @@ services:
     ports:
       - 3000:3000
     volumes: 
-      - ./src:/app
+      - ../src:/webapp
 
   webapp-build:
     build:
       context: .
       target: build
     volumes:
-      - .:/webapp
+      - ../src:/webapp
     command: ["npm", "run", "build"]
   
-  webapp-run:
-    build:
-      context: .
-      target: runner
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=runner
+  # webapp-run:
+  #   build:
+  #     context: .
+  #     target: runner
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - NODE_ENV=runner
